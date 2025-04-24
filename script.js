@@ -1,48 +1,58 @@
-(function() {
-    const slides = document.querySelectorAll('.slider .slide');
-    const prevBtn = document.querySelector('.nav-prev');
-    const nextBtn = document.querySelector('.nav-next');
-    const progressBar = document.querySelector('.progress-bar');
-    let currentIndex = 0;
-    const slideCount = slides.length;
-    const intervalTime = 6000; // 6 seconds
-    let timer;
-
-    function resetProgress() {
-      progressBar.style.transition = 'none';
-      progressBar.style.width = '0';
-      // Force reflow
-      progressBar.offsetWidth;
-      progressBar.style.transition = `width ${intervalTime}ms linear`;
-      progressBar.style.width = '100%';
-    }
-
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
+// script.js
+document.addEventListener("DOMContentLoaded", () => {
+    const gallery = document.querySelector(".gallery");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.querySelector(".lightbox-img");
+    const closeBtn = document.querySelector(".close");
+  
+    const images = [
+      {
+        src: "./imgaes/1.png",
+        title: "Sunset Boulevard",
+        location: "Los Angeles"
+      },
+      {
+        src: "./imgaes/1.png",
+        title: "Urban Calm",
+        location: "New York City"
+      },
+      {
+        src: "./imgaes/1.png",
+        title: "Mountain Whisper",
+        location: "Banff"
+      }
+    ];
+  
+    images.forEach((img) => {
+      const item = document.createElement("div");
+      item.classList.add("gallery-item");
+  
+      const image = document.createElement("img");
+      image.src = img.src;
+      image.alt = img.title;
+  
+      const caption = document.createElement("div");
+      caption.className = "caption";
+      caption.textContent = img.title;
+  
+      const pin = document.createElement("div");
+      pin.className = "pin";
+      pin.innerHTML = '<i class="fas fa-map-pin"></i> ' + img.location;
+  
+      item.appendChild(image);
+      item.appendChild(caption);
+      item.appendChild(pin);
+  
+      item.addEventListener("click", () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.remove("hidden");
       });
-      resetProgress();
-    }
-
-    function goTo(index) {
-      clearInterval(timer);
-      currentIndex = (index + slideCount) % slideCount;
-      showSlide(currentIndex);
-      startTimer();
-    }
-
-    function nextSlide() { goTo(currentIndex + 1); }
-    function prevSlide() { goTo(currentIndex - 1); }
-
-    prevBtn.addEventListener('click', prevSlide);
-    nextBtn.addEventListener('click', nextSlide);
-
-    function startTimer() {
-      resetProgress();
-      timer = setInterval(nextSlide, intervalTime);
-    }
-
-    // Initialize
-    showSlide(currentIndex);
-    startTimer();
-  })();
+  
+      gallery.appendChild(item);
+    });
+  
+    closeBtn.addEventListener("click", () => {
+      lightbox.classList.add("hidden");
+    });
+  });
+  
