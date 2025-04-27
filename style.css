@@ -99,7 +99,6 @@ body {
   border-radius: 5px;
   font-size: 0.9rem;
 }
-
 .lightbox {
   position: fixed;
   top: 0;
@@ -117,12 +116,29 @@ body {
   display: none;
 }
 
-.lightbox-img {
+.lightbox-content {
+  display: flex;
+  gap: 2rem;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
   max-width: 90%;
   max-height: 80%;
+  overflow: auto;
+}
+
+.lightbox-img {
+  max-width: 60%;
+  height: auto;
   border-radius: 10px;
 }
 
+.lightbox-info {
+  flex: 1;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.5;
+}
 .close {
   position: absolute;
   top: 20px;

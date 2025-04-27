@@ -85,34 +85,38 @@ document.addEventListener("DOMContentLoaded", () => {
     CameraInfo.innerHTML = '<i class="fa-solid fa-camera"></i> ' + "loading";
     console.log("before the function");
 
-    image.onload = () => {
+    item.addEventListener("click", () => {
+      storedViews++;
+      localStorage.setItem(viewsKey, storedViews);
+      viewCounter.textContent = `👁️ ${storedViews}`;
+
+      lightboxImg.src = img.src;
+      document.getElementById("lightbox-title").textContent = img.title;
+      document.getElementById("lightbox-location").textContent = img.location;
+
+      // Extract EXIF data
       EXIF.getData(image, function () {
-        console.log(image.src);
-        console.log("inside a function");
         const make = EXIF.getTag(this, "Make") || "Unknown Make";
-        console.log(make);
         const model = EXIF.getTag(this, "Model") || "Unknown Model";
-        console.log(model);
         const iso = EXIF.getTag(this, "ISOSpeedRatings") || "Unknown ISO";
-        console.log(iso);
         const exposure = EXIF.getTag(this, "ExposureTime");
-        console.log(exposure);
         const fNumber = EXIF.getTag(this, "FNumber");
-        console.log(fNumber);
 
         const exposureStr = exposure
           ? `1/${Math.round(1 / exposure)}s`
           : "Unknown Exposure";
         const fNumberStr = fNumber ? `f/${fNumber}` : "Unknown Aperture";
 
-        CameraInfo.innerHTML = `
-        ${model}<br>
-        ISO ${iso}<br>
-        ${fNumberStr}<br>
-        ${exposureStr}<br>
-      `;
+        document.getElementById("lightbox-exif").innerHTML = `
+      <p><strong>Camera:</strong> ${make} ${model}</p>
+      <p><strong>ISO:</strong> ${iso}</p>
+      <p><strong>Aperture:</strong> ${fNumberStr}</p>
+      <p><strong>Shutter Speed:</strong> ${exposureStr}</p>
+    `;
       });
-    };
+
+      lightbox.classList.remove("hidden");
+    });
     console.log("after the function");
 
     const caption = document.createElement("div");
@@ -166,6 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// progress bar
 (function () {
   const slides = document.querySelectorAll(".slider .slide");
   const prevBtn = document.querySelector(".nav-prev");
@@ -219,35 +224,8 @@ document.addEventListener("DOMContentLoaded", () => {
   startTimer();
 })();
 
-// open the image properties
-item.addEventListener("click", () => {
-  // Increase view count and store it
-  storedViews++;
-  localStorage.setItem(viewsKey, storedViews);
-  viewCounter.textContent = `👁️ ${storedViews}`;
-
-  // Show image in lightbox
-  lightboxImg.src = img.src;
-  lightbox.classList.remove("hidden");
-
-  // Clear previous EXIF data
-  const lightboxInfo = document.querySelector(".lightbox-info");
-  lightboxInfo.innerHTML = "Loading EXIF data...";
-
-  // Create a new Image object to extract EXIF data
-  item.addEventListener("click", () => {
-    // Increase view count and store it
-    storedViews++;
-    localStorage.setItem(viewsKey, storedViews);
-    viewCounter.textContent = `👁️ ${storedViews}`;
-
-    // Show image in lightbox
-    lightboxImg.src = img.src;
-    lightbox.classList.remove("hidden");
-  });
-
-  // Add the item to the gallery
-  gallery.appendChild(item);
-});
-
 // accessability
+nl_pos = "tr";
+nl_color = "yellow";
+nl_dir = "./nagishli_v3.0_beta_rev170120200211/nagishli_v3_beta/";
+nl_lang = "he";

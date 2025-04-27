@@ -11,16 +11,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.min.js"></script>
   <script defer src="script.js"></script>
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0/css/all.css">
+  <!-- accessability -->
+  <script src="./nagishli_v3.0_beta_rev170120200211/nagishli_v3_beta/nagishli_beta.js?v=3.0" charset="utf-8"
+    defer></script>
 
 </head>
-<script>
-  nl_pos = "tr";
-  nl_color = "red";
-  nl_dir = "./nagishli_v3.0_beta_rev170120200211/nagishli_v3_beta/";
-  nl_lang = "he";
-</script>
-<script src="./nagishli_v3.0_beta_rev170120200211/nagishli_v3_beta/nagishli_beta.js?v=3.0" charset="utf-8"
-  defer></script>
 
 
 
@@ -39,21 +34,21 @@
   </header>
 
   <main>
-    <!-- <div class="slider">
-      <a href="https://example1.com" class="slide active"><img src="./imgaes/20240926_164741.jpg" alt="Slide 1"></a>
-      <a href="https://example2.com" class="slide"><img src="./imgaes/IMG_6149.jpg" alt="Slide 2"></a>
-      <a href="https://example3.com" class="slide"><img src="./imgaes/IMG_3609.jpg" alt="Slide 3"></a>
-      <a href="https://example4.com" class="slide"><img src="./imgaes/IMG_6148.jpg" alt="Slide 4"></a>
-      <a href="https://example5.com" class="slide"><img src="./imgaes/IMG_9842.jpg" alt="Slide 5"></a> -->
+    <div class="slider">
+      <a href="https://example1.com" class="slide active"><img src="./imgaes/Landscape/FarRedBridge.jpg"
+          alt="Slide 1"></a>
+      <a href="https://example2.com" class="slide"><img src="./imgaes/Landscape/CloseRedBridge.jpg" alt="Slide 2"></a>
+      <a href="https://example3.com" class="slide"><img src="./imgaes/Landscape/Soldiers (1).jpg" alt="Slide 3"></a>
+      <a href="https://example4.com" class="slide"><img src="./imgaes/Landscape/Soldiers (4).jpg" alt="Slide 4"></a>
+      <a href="https://example5.com" class="slide"><img src="./imgaes/Landscape/FarRedBridge.jpg" alt="Slide 5"></a> -->
 
-    <!-- Controls: Prev, Next, Progress -->
-    <div class="controls">
-      <button class="nav-button nav-prev">&#10094;</button>
-      <div class="progress-container">
-        <div class="progress-bar"></div>
+      <div class="controls">
+        <button class="nav-button nav-prev">&#10094;</button>
+        <div class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
+        <button class="nav-button nav-next">&#10095;</button>
       </div>
-      <button class="nav-button nav-next">&#10095;</button>
-    </div>
     </div>
     <section id="portfolio" class="gallery">
       <!-- Images dynamically added via JS -->
@@ -68,11 +63,12 @@
     <div class="lightbox-content">
       <img class="lightbox-img" src="" alt="Expanded photo">
       <div class="lightbox-info">
-        <!-- EXIF data will be inserted here -->
+        <h3 id="lightbox-title"></h3>
+        <p id="lightbox-location"></p>
+        <div id="lightbox-exif"></div>
       </div>
     </div>
   </div>
-
 </body>
 
 </html>
