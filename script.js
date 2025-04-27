@@ -23,36 +23,53 @@ document.addEventListener("DOMContentLoaded", () => {
   const images = [
     {
       src: "./imgaes/Landscape/FarRedBridge.jpg",
-      title: "Sunset Boulevard",
+      title: "Golden Gate Bridge",
       location: "San Francisco",
+      CameraInfo: "200ISO/1O99 ",
     },
     {
       src: "./imgaes/Landscape/CloseRedBridge.jpg",
-      title: "Urban Calm",
+      title: "A Plane in golden gate",
       location: "San Francisco",
+      CameraInfo: "200ISO/1O99 ",
     },
     {
       src: "/imgaes/Landscape/BarCarmit.jpg",
-      title: "Mountain Whisper",
-      location: "Banff",
+      title: "Golden Bridge Selfie",
+      location: "San Francisco",
+      CameraInfo: "200ISO/1O99 ",
     },
+    // second line
+
     {
-      src: "./imgaes/Landscape/FarRedBridge.jpg",
+      src: "./imgaes/Landscape/Soldiers (1).jpg",
       title: "Sunset Boulevard",
-      location: "San Francisco",
+      location: "Park Shemer",
+      CameraInfo: "200ISO/1O99 ",
     },
     {
-      src: "./imgaes/Landscape/CloseRedBridge.jpg",
+      src: "./imgaes/Landscape/Soldiers (2).jpg",
       title: "Urban Calm",
       location: "San Francisco",
+      CameraInfo: "200ISO/1O99 ",
     },
     {
-      src: "/imgaes/Landscape/BarCarmit.jpg",
+      src: "./imgaes/Landscape/Soldiers (3).jpg",
       title: "Mountain Whisper",
       location: "Banff",
+      CameraInfo: "200ISO/1O99 ",
     },
-    { src: "./imgaes/1.png", title: "Urban Calm", location: "New York City" },
-    { src: "./imgaes/1.png", title: "Mountain Whisper", location: "Banff" },
+    // second line
+    // {
+    //   src: "./imgaes/1.png",
+    //   title: "Urban Calm",
+    //   location: "New York City",
+    // },
+    // {
+    //   src: "./imgaes/1.png",
+    //   title: "Mountain Whisper",
+    //   location: "Banff",
+    // },
   ];
 
   // Loop over each image and render it in the gallery
@@ -63,6 +80,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const image = document.createElement("img");
     image.src = img.src;
     image.alt = img.title;
+    const CameraInfo = document.createElement("div");
+    CameraInfo.className = "CameraInfo";
+    CameraInfo.innerHTML = '<i class="fa-solid fa-camera"></i> ' + "loading";
+    console.log("before the function");
+
+    image.onload = () => {
+      EXIF.getData(image, function () {
+        console.log(image.src);
+        console.log("inside a function");
+        const make = EXIF.getTag(this, "Make") || "Unknown Make";
+        console.log(make);
+        const model = EXIF.getTag(this, "Model") || "Unknown Model";
+        console.log(model);
+        const iso = EXIF.getTag(this, "ISOSpeedRatings") || "Unknown ISO";
+        console.log(iso);
+        const exposure = EXIF.getTag(this, "ExposureTime");
+        console.log(exposure);
+        const fNumber = EXIF.getTag(this, "FNumber");
+        console.log(fNumber);
+
+        const exposureStr = exposure
+          ? `1/${Math.round(1 / exposure)}s`
+          : "Unknown Exposure";
+        const fNumberStr = fNumber ? `f/${fNumber}` : "Unknown Aperture";
+
+        CameraInfo.innerHTML = `
+        ${model}<br>
+        ISO ${iso}<br>
+        ${fNumberStr}<br>
+        ${exposureStr}<br>
+      `;
+      });
+    };
+    console.log("after the function");
 
     const caption = document.createElement("div");
     caption.className = "caption";
@@ -84,6 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
     item.appendChild(caption);
     item.appendChild(pin);
     item.appendChild(viewCounter);
+    item.appendChild(CameraInfo);
 
     // When image is clicked
     item.addEventListener("click", () => {
@@ -166,3 +218,36 @@ document.addEventListener("DOMContentLoaded", () => {
   showSlide(currentIndex);
   startTimer();
 })();
+
+// open the image properties
+item.addEventListener("click", () => {
+  // Increase view count and store it
+  storedViews++;
+  localStorage.setItem(viewsKey, storedViews);
+  viewCounter.textContent = `👁️ ${storedViews}`;
+
+  // Show image in lightbox
+  lightboxImg.src = img.src;
+  lightbox.classList.remove("hidden");
+
+  // Clear previous EXIF data
+  const lightboxInfo = document.querySelector(".lightbox-info");
+  lightboxInfo.innerHTML = "Loading EXIF data...";
+
+  // Create a new Image object to extract EXIF data
+  item.addEventListener("click", () => {
+    // Increase view count and store it
+    storedViews++;
+    localStorage.setItem(viewsKey, storedViews);
+    viewCounter.textContent = `👁️ ${storedViews}`;
+
+    // Show image in lightbox
+    lightboxImg.src = img.src;
+    lightbox.classList.remove("hidden");
+  });
+
+  // Add the item to the gallery
+  gallery.appendChild(item);
+});
+
+// accessability

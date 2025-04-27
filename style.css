@@ -71,7 +71,7 @@ body {
   font-size: 0.9rem;
 }
 
-.views{
+.views {
   position: absolute;
   bottom: 10px;
   left: 10px;
@@ -87,6 +87,17 @@ body {
   right: 10px;
   color: rgb(255, 255, 255);
   font-size: 1.2rem;
+}
+
+.CameraInfo {
+  position: absolute;
+  bottom: 320px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
 }
 
 .lightbox {
@@ -120,7 +131,11 @@ body {
   color: white;
   cursor: pointer;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 .slider {
   position: relative;
   width: 100%;
@@ -160,7 +175,7 @@ body {
 }
 /* Navigation Buttons */
 .nav-button {
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.7);
   border: none;
   padding: 0px;
   cursor: pointer;
@@ -168,19 +183,19 @@ body {
   transition: background 0.2s;
 }
 .nav-button:hover {
-  background: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.9);
 }
 /* Progress Bar Container */
 .progress-container {
   width: 120px;
   height: 6px;
-  background: rgba(255,255,255,0.4);
+  background: rgba(255, 255, 255, 0.4);
   border-radius: 3px;
   overflow: hidden;
 }
 .progress-bar {
   width: 0;
   height: 100%;
-  background: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.9);
   transition: width linear;
 }
