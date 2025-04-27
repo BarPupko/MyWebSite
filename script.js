@@ -59,11 +59,10 @@ document.addEventListener("DOMContentLoaded", () => {
   images.forEach((img, index) => {
     const item = document.createElement("div");
     item.classList.add("gallery-item");
+
     const image = document.createElement("img");
     image.src = img.src;
     image.alt = img.title;
-    
-
 
     const caption = document.createElement("div");
     caption.className = "caption";
