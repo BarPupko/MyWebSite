@@ -82,7 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
     image.alt = img.title;
     const CameraInfo = document.createElement("div");
     CameraInfo.className = "CameraInfo";
-    CameraInfo.innerHTML = '<i class="fa-solid fa-camera"></i> ' + "loading";
+    CameraInfo.innerHTML =
+      '<i class="fa-solid fa-camera"></i> ' + "Click for Camera Info";
     console.log("before the function");
 
     item.addEventListener("click", () => {
@@ -144,7 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // When image is clicked
     item.addEventListener("click", () => {
       // Increase view count and store it
-      storedViews++;
       localStorage.setItem(viewsKey, storedViews);
       viewCounter.textContent = `👁️ ${storedViews}`;
 
@@ -229,3 +229,17 @@ nl_pos = "tr";
 nl_color = "yellow";
 nl_dir = "./nagishli_v3.0_beta_rev170120200211/nagishli_v3_beta/";
 nl_lang = "he";
+
+// Dark Theme
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleButton = document.getElementById("theme-toggle");
+  const currentTheme = localStorage.getItem("theme") || "light";
+  document.documentElement.setAttribute("data-theme", currentTheme);
+
+  toggleButton.addEventListener("click", () => {
+    const theme = document.documentElement.getAttribute("data-theme");
+    const newTheme = theme === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+  });
+});
