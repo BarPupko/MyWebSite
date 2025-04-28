@@ -25,19 +25,19 @@ document.addEventListener("DOMContentLoaded", () => {
       src: "./imgaes/Landscape/FarRedBridge.jpg",
       title: "Golden Gate Bridge",
       location: "San Francisco",
-      CameraInfo: "200ISO/1O99 ",
+      category: "Landscape",
     },
     {
       src: "./imgaes/Landscape/CloseRedBridge.jpg",
       title: "A Plane in golden gate",
       location: "San Francisco",
-      CameraInfo: "200ISO/1O99 ",
+      category: "Landscape",
     },
     {
       src: "/imgaes/Landscape/BarCarmit.jpg",
       title: "Golden Bridge Selfie",
       location: "San Francisco",
-      CameraInfo: "200ISO/1O99 ",
+      category: "Landscape",
     },
     // second line
 
@@ -45,19 +45,19 @@ document.addEventListener("DOMContentLoaded", () => {
       src: "./imgaes/Landscape/Soldiers (1).jpg",
       title: "Sunset Boulevard",
       location: "Park Shemer",
-      CameraInfo: "200ISO/1O99 ",
+      category: "Landscape",
     },
     {
       src: "./imgaes/Landscape/Soldiers (2).jpg",
       title: "Urban Calm",
       location: "San Francisco",
-      CameraInfo: "200ISO/1O99 ",
+      category: "Landscape",
     },
     {
       src: "./imgaes/Landscape/Soldiers (3).jpg",
       title: "Mountain Whisper",
       location: "Banff",
-      CameraInfo: "200ISO/1O99 ",
+      category: "Landscape",
     },
     // second line
     // {
@@ -243,3 +243,6 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("theme", newTheme);
   });
 });
+
+
+//bubbles
