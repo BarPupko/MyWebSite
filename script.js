@@ -1,5 +1,58 @@
 // script.js
 
+// Array of image objects
+const images = [
+  {
+    src: "./imgaes/Landscape/FarRedBridge.jpg",
+    title: "Golden Gate Bridge",
+    location: "San Francisco",
+    category: "Landscape",
+  },
+  {
+    src: "./imgaes/Landscape/CloseRedBridge.jpg",
+    title: "A Plane in golden gate",
+    location: "San Francisco",
+    category: "Landscape",
+  },
+  {
+    src: "/imgaes/Landscape/BarCarmit.jpg",
+    title: "Golden Bridge Selfie",
+    location: "San Francisco",
+    category: "Landscape",
+  },
+  // second line
+
+  {
+    src: "./imgaes/Landscape/Soldiers (1).jpg",
+    title: "Sunset Boulevard",
+    location: "Park Shemer",
+    category: "Landscape",
+  },
+  {
+    src: "./imgaes/Landscape/Soldiers (2).jpg",
+    title: "Urban Calm",
+    location: "San Francisco",
+    category: "Landscape",
+  },
+  {
+    src: "./imgaes/Landscape/Soldiers (3).jpg",
+    title: "Mountain Whisper",
+    location: "Banff",
+    category: "people",
+  },
+  // second line
+  // {
+  //   src: "./imgaes/1.png",
+  //   title: "Urban Calm",
+  //   location: "New York City",
+  // },
+  // {
+  //   src: "./imgaes/1.png",
+  //   title: "Mountain Whisper",
+  //   location: "Banff",
+  // },
+];
+
 document.addEventListener("DOMContentLoaded", () => {
   const gallery = document.querySelector(".gallery");
   const lightbox = document.getElementById("lightbox");
@@ -17,59 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "img7",
     "img8",
     "img9",
-  ];
-
-  // Array of image objects
-  const images = [
-    {
-      src: "./imgaes/Landscape/FarRedBridge.jpg",
-      title: "Golden Gate Bridge",
-      location: "San Francisco",
-      category: "Landscape",
-    },
-    {
-      src: "./imgaes/Landscape/CloseRedBridge.jpg",
-      title: "A Plane in golden gate",
-      location: "San Francisco",
-      category: "Landscape",
-    },
-    {
-      src: "/imgaes/Landscape/BarCarmit.jpg",
-      title: "Golden Bridge Selfie",
-      location: "San Francisco",
-      category: "Landscape",
-    },
-    // second line
-
-    {
-      src: "./imgaes/Landscape/Soldiers (1).jpg",
-      title: "Sunset Boulevard",
-      location: "Park Shemer",
-      category: "Landscape",
-    },
-    {
-      src: "./imgaes/Landscape/Soldiers (2).jpg",
-      title: "Urban Calm",
-      location: "San Francisco",
-      category: "Landscape",
-    },
-    {
-      src: "./imgaes/Landscape/Soldiers (3).jpg",
-      title: "Mountain Whisper",
-      location: "Banff",
-      category: "Landscape",
-    },
-    // second line
-    // {
-    //   src: "./imgaes/1.png",
-    //   title: "Urban Calm",
-    //   location: "New York City",
-    // },
-    // {
-    //   src: "./imgaes/1.png",
-    //   title: "Mountain Whisper",
-    //   location: "Banff",
-    // },
   ];
 
   // Loop over each image and render it in the gallery
@@ -234,7 +234,7 @@ nl_lang = "he";
 document.addEventListener("DOMContentLoaded", () => {
   const toggleButton = document.getElementById("theme-toggle");
   const currentTheme = localStorage.getItem("theme") || "light";
-  
+
   document.documentElement.setAttribute("data-theme", currentTheme);
 
   toggleButton.addEventListener("click", () => {
@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (newTheme === "light") {
       toggleButton.checked = true;
       toggleButton.innerHTML = '<i class="fa-solid fa-sun"></i>';
-    }else{
+    } else {
       toggleButton.checked = false;
       toggleButton.innerHTML = '<i class="fa-solid fa-moon"></i>';
     }
@@ -251,6 +251,28 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("theme", newTheme);
   });
 });
+// Category filtering
+document.addEventListener("DOMContentLoaded", () => {
+  const categoryButtons = document.querySelectorAll(".category-button");
+  const galleryItems = document.querySelectorAll(".gallery-item");
 
+  categoryButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const category = button.getAttribute("data-category").toLowerCase();
 
-//bubbles
+      galleryItems.forEach((item, index) => {
+        const itemCategory = images[index]?.category.toLowerCase();
+
+        if (category === "all" || itemCategory === category) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+
+      // Highlight the active button
+      categoryButtons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+    });
+  });
+});
