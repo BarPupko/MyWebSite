@@ -6,54 +6,63 @@ const images = [
     src: "./imgaes/Landscape/FarRedBridge.jpg",
     title: "Golden Gate Bridge",
     location: "San Francisco",
+    exactLocation: { x: 37.8199, y: -122.4783 },
     category: "Landscape",
   },
   {
     src: "./imgaes/Landscape/CloseRedBridge.jpg",
     title: "A Plane in golden gate",
     location: "San Francisco",
+    exactLocation: { x: 37.8199, y: -122.4783 },
     category: "Landscape",
   },
   {
     src: "/imgaes/Landscape/BarCarmit.jpg",
     title: "Golden Bridge Selfie",
     location: "San Francisco",
+    exactLocation: { x: 37.8199, y: -122.4783 },
     category: "people",
   },
   {
     src: "./imgaes/Landscape/Soldiers (1).jpg",
     title: "Army Ranger",
     location: "Park Shemer",
+    exactLocation: { x: 32.5674, y: 35.1234 },
     category: "people",
   },
   {
     src: "./imgaes/Landscape/Soldiers (2).jpg",
     title: "Urban Calm",
     location: "San Francisco",
+    exactLocation: { x: 37.8199, y: -122.4783 },
     category: "people",
   },
   {
     src: "./imgaes/Landscape/Soldiers (3).jpg",
     title: "Mountain Whisper",
     location: "Banff",
+    exactLocation: { x: 51.1784, y: -115.5708 },
     category: "people",
   },
   {
     src: "./imgaes/Architecture/newyork_highline.jpg",
     title: "High Line",
     location: "New York City",
+    exactLocation: { x: 40.7480, y: -74.0048 },
     category: "architecture",
   },
   {
     src: "./imgaes/Architecture/edinbrugh.JPG",
     title: "HALL",
     location: "Edinburgh",
+    exactLocation: { x: 55.9533, y: -3.1883 },
     category: "architecture",
   },
   {
     src: "./imgaes/Architecture/washington.jpg",
     title: "The Main Library",
     location: "Washington, D.C.",
+    exactLocation: { x: 38.9072, y: -77.0369 },
     category: "architecture",
   },
 ];
@@ -98,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       lightboxImg.src = img.src;
       document.getElementById("lightbox-title").textContent = img.title;
-      document.getElementById("lightbox-location").textContent = img.location;
+      document.getElementById("lightbox-location").textContent = img.location; // you can remove this line if we only want inside the map
 
       // Extract EXIF data
       EXIF.getData(image, function () {
@@ -113,12 +122,27 @@ document.addEventListener("DOMContentLoaded", () => {
           : "Unknown Exposure";
         const fNumberStr = fNumber ? `f/${fNumber}` : "Unknown Aperture";
 
+        // Build Google Maps search URL based on location
+        const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+          img.location
+        )}`;
+
+        // Optional: Static Map Image URL (basic preview thumbnail)
+        const staticMapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(
+          img.location
+        )}&zoom=13&size=300x150&maptype=roadmap&markers=color:red%7C${encodeURIComponent(
+          img.location
+        )}&key=YOUR_GOOGLE_MAPS_API_KEY`;
+
         document.getElementById("lightbox-exif").innerHTML = `
-      <p><strong>Camera:</strong> ${make} ${model}</p>
-      <p><strong>ISO:</strong> ${iso}</p>
-      <p><strong>Aperture:</strong> ${fNumberStr}</p>
-      <p><strong>Shutter Speed:</strong> ${exposureStr}</p>
-    `;
+    <a href="${googleMapsUrl}" target="_blank" style="display: inline-block; margin-bottom: 10px;">
+      <img src="${staticMapUrl}" alt="Location Map" style="width: 100%; border-radius: 8px;">
+    </a>
+    <p><strong>Camera:</strong> ${make} ${model}</p>
+    <p><strong>ISO:</strong> ${iso}</p>
+    <p><strong>Aperture:</strong> ${fNumberStr}</p>
+    <p><strong>Shutter Speed:</strong> ${exposureStr}</p>
+  `;
       });
 
       lightbox.classList.remove("hidden");
