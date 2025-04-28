@@ -18,7 +18,7 @@ const images = [
     src: "/imgaes/Landscape/BarCarmit.jpg",
     title: "Golden Bridge Selfie",
     location: "San Francisco",
-    category: "Landscape",
+    category: "people",
   },
   // second line
 
@@ -26,13 +26,13 @@ const images = [
     src: "./imgaes/Landscape/Soldiers (1).jpg",
     title: "Sunset Boulevard",
     location: "Park Shemer",
-    category: "Landscape",
+    category: "people",
   },
   {
     src: "./imgaes/Landscape/Soldiers (2).jpg",
     title: "Urban Calm",
     location: "San Francisco",
-    category: "Landscape",
+    category: "people",
   },
   {
     src: "./imgaes/Landscape/Soldiers (3).jpg",
@@ -276,3 +276,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// bubble active button clicked -.333333333//todo redundant code ????
+// document.querySelectorAll(".category-button").forEach((button) => {
+//   button.addEventListener("click", () => {
+//     // Remove 'active' class from all buttons
+//     document
+//       .querySelectorAll(".category-button")
+//       .forEach((btn) => btn.classList.remove("active"));
+
+//     // Add 'active' class to the clicked button
+//     button.classList.add("active");
+
+//     // Filter the gallery
+//     const selectedCategory = button.getAttribute("data-category");
+//     renderGallery(selectedCategory);
+//   });
+// });

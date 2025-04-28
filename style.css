@@ -269,9 +269,18 @@ body {
   color: white;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background 0.5s, color 0.5s;
+}
+.category-button:hover {
+  background: linear-gradient(45deg, #4caf50, #2196f3);
+  color: white;
+   opacity: 0.9;
+  transition: 1.3s;
+}
+.category-button.active {
+  background-color: #333;
+  color: white;
+  transition: background 0.5s, color 0.5s;
 }
 
-.category-button:hover {
-  background-color: #555;
-}
+
