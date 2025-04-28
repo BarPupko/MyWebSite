@@ -234,11 +234,19 @@ nl_lang = "he";
 document.addEventListener("DOMContentLoaded", () => {
   const toggleButton = document.getElementById("theme-toggle");
   const currentTheme = localStorage.getItem("theme") || "light";
+  
   document.documentElement.setAttribute("data-theme", currentTheme);
 
   toggleButton.addEventListener("click", () => {
     const theme = document.documentElement.getAttribute("data-theme");
     const newTheme = theme === "light" ? "dark" : "light";
+    if (newTheme === "light") {
+      toggleButton.checked = true;
+      toggleButton.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    }else{
+      toggleButton.checked = false;
+      toggleButton.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    }
     document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
   });
