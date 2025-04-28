@@ -20,11 +20,9 @@ const images = [
     location: "San Francisco",
     category: "people",
   },
-  // second line
-
   {
     src: "./imgaes/Landscape/Soldiers (1).jpg",
-    title: "Sunset Boulevard",
+    title: "Army Ranger",
     location: "Park Shemer",
     category: "people",
   },
@@ -40,17 +38,24 @@ const images = [
     location: "Banff",
     category: "people",
   },
-  // second line
-  // {
-  //   src: "./imgaes/1.png",
-  //   title: "Urban Calm",
-  //   location: "New York City",
-  // },
-  // {
-  //   src: "./imgaes/1.png",
-  //   title: "Mountain Whisper",
-  //   location: "Banff",
-  // },
+  {
+    src: "./imgaes/Architecture/newyork_highline.jpg",
+    title: "High Line",
+    location: "New York City",
+    category: "architecture",
+  },
+  {
+    src: "./imgaes/Architecture/edinbrugh.JPG",
+    title: "HALL",
+    location: "Edinburgh",
+    category: "architecture",
+  },
+  {
+    src: "./imgaes/Architecture/washington.jpg",
+    title: "The Main Library",
+    location: "Washington, D.C.",
+    category: "architecture",
+  },
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
