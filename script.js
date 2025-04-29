@@ -28,7 +28,7 @@ const images = [
     title: "Army Ranger",
     location: "Park Shemer",
     exactLocation: { x: 32.5674, y: 35.1234 },
-    category: ["people","animals"],
+    category: ["people", "animals"],
   },
   {
     src: "./imgaes/Landscape/Soldiers (2).jpg",
@@ -42,13 +42,13 @@ const images = [
     title: "Mountain Whisper",
     location: "Banff",
     exactLocation: { x: 51.1784, y: -115.5708 },
-    category: ["people","animals"],
+    category: ["people", "animals"],
   },
   {
     src: "./imgaes/Architecture/newyork_highline.jpg",
     title: "High Line",
     location: "New York City",
-    exactLocation: { x: 40.7480, y: -74.0048 },
+    exactLocation: { x: 40.748, y: -74.0048 },
     category: "architecture",
   },
   {
@@ -64,6 +64,27 @@ const images = [
     location: "Washington, D.C.",
     exactLocation: { x: 38.9072, y: -77.0369 },
     category: "architecture",
+  },
+  {
+    src: "./imgaes/Sunset/sunset1.jpg",
+    title: "Season of the Sea",
+    location: "Kiryat Yam",
+    exactLocation: { x: 38.9072, y: -77.0369 },
+    category: "sunset",
+  },
+  {
+    src: "./imgaes/Sunset/sunset2.jpg",
+    title: "Season of the Sea",
+    location: "Kiryat Yam",
+    exactLocation: { x: 38.9072, y: -77.0369 },
+    category: "sunset",
+  },
+  {
+    src: "./imgaes/Sunset/sunset3.jpg",
+    title: "Season of the Sea",
+    location: "Haifa",
+    exactLocation: { x: 38.9072, y: -77.0369 },
+    category: "sunset",
   },
 ];
 
@@ -287,7 +308,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   categoryButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      const selectedCategory = button.getAttribute("data-category").toLowerCase();
+      const selectedCategory = button
+        .getAttribute("data-category")
+        .toLowerCase();
 
       galleryItems.forEach((item, index) => {
         const img = images[index];
@@ -305,9 +328,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Lowercase all categories for comparison
-        const lowerCaseCategories = itemCategories.map(cat => cat.toLowerCase());
+        const lowerCaseCategories = itemCategories.map((cat) =>
+          cat.toLowerCase()
+        );
 
-        if (selectedCategory === "all" || lowerCaseCategories.includes(selectedCategory)) {
+        if (
+          selectedCategory === "all" ||
+          lowerCaseCategories.includes(selectedCategory)
+        ) {
           item.style.display = "block";
         } else {
           item.style.display = "none";

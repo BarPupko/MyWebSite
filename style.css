@@ -288,7 +288,7 @@ body {
   transition: 1.3s;
 }
 .category-button.active {
-  background-color: #333;
+  background-color: linear-gradient(45deg, #4caf50, #2196f3);
   color: white;
   transition: background 0.5s, color 0.5s;
 }
