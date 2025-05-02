@@ -134,7 +134,7 @@ body {
 
 .CameraInfo {
   position: absolute;
-  bottom: 365px;
+  bottom: 45px;
   left: 10px;
   background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
@@ -162,7 +162,8 @@ body {
 .lightbox-content {
   display: flex;
   gap: 2rem;
-  background: #fff;
+  background-color: rgb(255, 255, 255); /* ✅ Use dynamic theme variable */
+  color: rgba(5, 5, 5, 0.8); /* ✅ Match theme text */
   padding: 2rem;
   border-radius: 10px;
   max-width: 90%;
@@ -171,14 +172,18 @@ body {
 }
 
 .lightbox-img {
-  max-width: 60%;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
   height: auto;
-  border-radius: 10px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
 .lightbox-info {
   flex: 1;
-  color: #333;
+  color: #000000;
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -192,6 +197,7 @@ body {
 .lightbox-map:hover {
   transform: scale(1.05);
 }
+
 .close {
   position: absolute;
   top: 20px;
@@ -280,14 +286,15 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 0px;
+  margin-bottom: 10px;
 }
 
 .category-button {
   padding: 10px 20px;
   border: none;
-  border-radius: 50px;
+  margin: auto;
+  border-radius: 20px;
   background-color: #333;
   color: white;
   font-size: 16px;
@@ -305,4 +312,153 @@ body {
   background: linear-gradient(45deg, #4caf50, #2196f3);
   color: white;
   transition: background 0.5s, color 0.5s;
+}
+
+#hamburger {
+  display: none;
+  background: red;
+  border: none;
+  font-size: 2rem;
+  color: var(--text-color);
+  cursor: pointer;
+}
+/* phone support */
+@media (max-width: 768px) {
+  #hamburger {
+    display: block;
+    background-color: red;
+  }
+
+  .lightbox-map {
+    width: 100%;
+    height: 120px; /* 👈 Smaller fixed height */
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    background-color: var(--bg-color);
+    padding: 1rem;
+    position: absolute;
+    top: 60px; /* adjust based on header height */
+    left: 0;
+    z-index: 999;
+  }
+
+  .nav-links.show {
+    display: flex;
+    --bg-color: #121212;
+    --text-color: white;
+  }
+
+  .nav-links li a {
+    font-size: 1rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-logo {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  #theme-toggle {
+    margin-left: 0;
+    align-self: flex-end;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(1, 1fr); /* 1 column on phones */
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .caption {
+    font-size: 0.8rem;
+    left: 100px;
+    bottom: 10px;
+  }
+
+  .views {
+    font-size: 0.8rem;
+  }
+
+  .CameraInfo {
+    bottom: 210px;
+    font-size: 0.55rem;
+  }
+
+ .category-button {
+    width: 100%;         /* Make buttons full width */
+    font-size: 18px;     /* Slightly larger text */
+    padding: 12px 24px;  /* More touch-friendly */
+  }
+
+  .category-button {
+    font-size: 0.8rem; /* smaller text */
+    padding: 6px 12px; /* smaller button size */
+    width: auto; /* auto width or use a fixed small one */
+    border-radius: 30px; /* still rounded */
+  }
+
+  .slider {
+    height: 240px;
+    max-width: 100%;
+  }
+  .lightbox-content {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    width: 90vw;
+    max-height: 80vh;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #4caf50, #2196f3);
+    opacity: 0.9;
+  }
+
+  .lightbox-img {
+    max-width: 100%;
+    max-height: 40vh;
+    object-fit: contain;
+    border-radius: 10px;
+  }
+
+  .lightbox-info {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    color: #fff;
+  }
+
+  .pin {
+    font-size: 0.9rem;
+    top: 6px;
+    right: 6px;
+  }
+
+  .close {
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+  }
+  .pin {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: rgb(255, 255, 255);
+    font-size: 0.6rem;
+  }
+}
+
+.nav-button,
+.category-button,
+#theme-toggle {
+  min-height: 44px;
+  min-width: 44px;
 }

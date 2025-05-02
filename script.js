@@ -308,7 +308,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+//hamburger menu
 
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("nav-links");
+
+  hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
+
+    // Toggle the icon between ☰ and ✖
+    if (navLinks.classList.contains("show")) {
+      hamburger.innerHTML = "✖";
+    } else {
+      hamburger.innerHTML = "☰";
+    }
+  });
+});
+//
 // Dark Theme
 document.addEventListener("DOMContentLoaded", () => {
   const toggleButton = document.getElementById("theme-toggle");
@@ -342,8 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
         : '<i class="fa-solid fa-sun"></i>';
   });
 });
-
-// // progress bar
+// progress bar
 // (function () {
 //   const slides = document.querySelectorAll(".slider .slide");
 //   const prevBtn = document.querySelector(".nav-prev");
