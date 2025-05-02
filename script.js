@@ -1,21 +1,21 @@
 // Array of image objects
 const images = [
   {
-    src: "./imgaes/SaveTheDate/Image1.jpeg",
+    src: "./imgaes/SaveTheDate/img1.jpg",
+    title: "Board with numbers",
+    location: "Park Ha Amaqim12",
+    exactLocation: { x: 32.72370464226655, y: 35.11077493651688 },
+    category: ["portrait", "SaveTheDate"],
+  },
+  {
+    src: "./imgaes/SaveTheDate/img2.jpg",
     title: "Board with numbers",
     location: "Park Ha Amaqim",
     exactLocation: { x: 32.72370464226655, y: 35.11077493651688 },
     category: ["people", "SaveTheDate"],
   },
   {
-    src: "./imgaes/SaveTheDate/Image2.jpeg",
-    title: "Board with numbers",
-    location: "Park Ha Amaqim",
-    exactLocation: { x: 32.72370464226655, y: 35.11077493651688 },
-    category: ["people", "SaveTheDate"],
-  },
-  {
-    src: "./imgaes/SaveTheDate/Image3.jpeg",
+    src: "./imgaes/SaveTheDate/img3.jpg",
     title: "Board with numbers",
     location: "Park Ha Amaqim",
     exactLocation: { x: 32.72370464226655, y: 35.11077493651688 },
@@ -131,9 +131,17 @@ document.addEventListener("DOMContentLoaded", () => {
     "img7",
     "img8",
     "img9",
+    "img10",
+    "img11",
+    "img12",
+    "img13",
+    "img14",
+    "img15",
   ];
 
   // Loop over each image and render it in the gallery
+  gallery.innerHTML = ""; // ✅ Clear the gallery before rendering
+
   images.forEach((img, index) => {
     const item = document.createElement("div");
     item.classList.add("gallery-item");
@@ -214,6 +222,10 @@ document.addEventListener("DOMContentLoaded", () => {
     viewCounter.className = "views";
     viewCounter.textContent = `👁️ ${storedViews}`;
 
+    //portrait and landscape images
+    const isPortrait = img.naturalHeight > img.naturalWidth;
+    image.classList.toggle("portrait", isPortrait);
+
     // Append all elements to the image block
     item.appendChild(image);
     item.appendChild(caption);
@@ -249,92 +261,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// progress bar
-(function () {
-  const slides = document.querySelectorAll(".slider .slide");
-  const prevBtn = document.querySelector(".nav-prev");
-  const nextBtn = document.querySelector(".nav-next");
-  const progressBar = document.querySelector(".progress-bar");
-  let currentIndex = 0;
-  const slideCount = slides.length;
-  const intervalTime = 6000; // 6 seconds
-  let timer;
-
-  function resetProgress() {
-    progressBar.style.transition = "none";
-    progressBar.style.width = "0";
-    // Force reflow
-    progressBar.offsetWidth;
-    progressBar.style.transition = `width ${intervalTime}ms linear`;
-    progressBar.style.width = "100%";
-  }
-
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle("active", i === index);
-    });
-    resetProgress();
-  }
-
-  function goTo(index) {
-    clearInterval(timer);
-    currentIndex = (index + slideCount) % slideCount;
-    showSlide(currentIndex);
-    startTimer();
-  }
-
-  function nextSlide() {
-    goTo(currentIndex + 1);
-  }
-  function prevSlide() {
-    goTo(currentIndex - 1);
-  }
-
-  prevBtn.addEventListener("click", prevSlide);
-  nextBtn.addEventListener("click", nextSlide);
-
-  function startTimer() {
-    resetProgress();
-    timer = setInterval(nextSlide, intervalTime);
-  }
-
-  // Initialize
-  showSlide(currentIndex);
-  startTimer();
-})();
-
-// accessability
-nl_pos = "tr";
-nl_color = "yellow";
-nl_dir = "./nagishli_v3.0_beta_rev170120200211/nagishli_v3_beta/";
-nl_lang = "he";
-
-// Dark Theme
-document.addEventListener("DOMContentLoaded", () => {
-  const toggleButton = document.getElementById("theme-toggle");
-  const currentTheme = localStorage.getItem("theme") || "light";
-
-  document.documentElement.setAttribute("data-theme", currentTheme);
-
-  toggleButton.addEventListener("click", () => {
-    const theme = document.documentElement.getAttribute("data-theme");
-    const newTheme = theme === "light" ? "dark" : "light";
-    if (newTheme === "light") {
-      toggleButton.checked = true;
-      toggleButton.innerHTML = '<i class="fa-solid fa-sun"></i>';
-    } else {
-      toggleButton.checked = false;
-      toggleButton.innerHTML = '<i class="fa-solid fa-moon"></i>';
-    }
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-  });
-});
 // Category filtering
 document.addEventListener("DOMContentLoaded", () => {
   const categoryButtons = document.querySelectorAll(".category-button");
   const galleryItems = document.querySelectorAll(".gallery-item");
-
+  console.log("clicked");
   categoryButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const selectedCategory = button
@@ -377,6 +308,100 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// Dark Theme
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleButton = document.getElementById("theme-toggle");
+
+  console.log("Toggle button found:", toggleButton); // ✅ SHOULD LOG!
+
+  if (!toggleButton) {
+    console.error("Toggle button not found in DOM!");
+    return;
+  }
+
+  const currentTheme = localStorage.getItem("theme") || "light";
+  document.documentElement.setAttribute("data-theme", currentTheme);
+
+  toggleButton.innerHTML =
+    currentTheme === "dark"
+      ? '<i class="fa-solid fa-moon"></i>'
+      : '<i class="fa-solid fa-sun"></i>';
+
+  toggleButton.addEventListener("click", () => {
+    console.log("Theme toggle clicked!"); // ✅ SHOULD LOG ON CLICK
+
+    const theme = document.documentElement.getAttribute("data-theme");
+    const newTheme = theme === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+
+    toggleButton.innerHTML =
+      newTheme === "dark"
+        ? '<i class="fa-solid fa-moon"></i>'
+        : '<i class="fa-solid fa-sun"></i>';
+  });
+});
+
+// // progress bar
+// (function () {
+//   const slides = document.querySelectorAll(".slider .slide");
+//   const prevBtn = document.querySelector(".nav-prev");
+//   const nextBtn = document.querySelector(".nav-next");
+//   const progressBar = document.querySelector(".progress-bar");
+//   let currentIndex = 0;
+//   const slideCount = slides.length;
+//   const intervalTime = 6000; // 6 seconds
+//   let timer;
+
+//   function resetProgress() {
+//     progressBar.style.transition = "none";
+//     progressBar.style.width = "0";
+//     // Force reflow
+//     progressBar.offsetWidth;
+//     progressBar.style.transition = `width ${intervalTime}ms linear`;
+//     progressBar.style.width = "100%";
+//   }
+
+//   function showSlide(index) {
+//     slides.forEach((slide, i) => {
+//       slide.classList.toggle("active", i === index);
+//     });
+//     resetProgress();
+//   }
+
+//   function goTo(index) {
+//     clearInterval(timer);
+//     currentIndex = (index + slideCount) % slideCount;
+//     showSlide(currentIndex);
+//     startTimer();
+//   }
+
+//   function nextSlide() {
+//     goTo(currentIndex + 1);
+//   }
+//   function prevSlide() {
+//     goTo(currentIndex - 1);
+//   }
+
+//   prevBtn.addEventListener("click", prevSlide);
+//   nextBtn.addEventListener("click", nextSlide);
+
+//   function startTimer() {
+//     resetProgress();
+//     timer = setInterval(nextSlide, intervalTime);
+//   }
+
+//   // Initialize
+//   showSlide(currentIndex);
+//   startTimer();
+// })();
+
+// accessability
+nl_pos = "tr";
+nl_color = "yellow";
+nl_dir = "./nagishli_v3.0_beta_rev170120200211/nagishli_v3_beta/";
+nl_lang = "he";
 
 // bubble active button clicked -.333333333//todo redundant code ????
 // document.querySelectorAll(".category-button").forEach((button) => {

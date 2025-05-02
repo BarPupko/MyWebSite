@@ -1,16 +1,15 @@
 :root {
   --bg-color: #121212;
   --text-color: #ffffff;
-  font-family: Arial, sans-serif;
-  margin: 0;
 }
 
 [data-theme="dark"] {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-
-  margin: 0;
-  font-family: Arial, sans-serif;
+  --bg-color: #121212;
+  --text-color: white;
+}
+:root[data-theme="light"] {
+  --bg-color: white;
+  --text-color: black;
 }
 
 body {
@@ -20,6 +19,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
 .navbar {
   display: flex;
   justify-content: space-between; /* logo on left, links on right */
@@ -58,6 +58,13 @@ body {
   cursor: pointer;
   font-size: 1.5rem;
   margin-left: 1rem;
+}
+#theme-toggle i {
+  transition: transform 0.3s ease;
+}
+
+#theme-toggle:hover i {
+  transform: rotate(180deg);
 }
 
 .nav-right {
@@ -164,13 +171,9 @@ body {
 }
 
 .lightbox-img {
-  max-width: 100vw;
-  max-height: 90vh;
-  width: auto;
+  max-width: 60%;
   height: auto;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
+  border-radius: 10px;
 }
 
 .lightbox-info {
@@ -178,10 +181,6 @@ body {
   color: #333;
   font-size: 1rem;
   line-height: 1.5;
-}
-.lightbox-img.portrait {
-  max-height: 80vh;
-  width: auto;
 }
 
 .lightbox-map {
@@ -201,11 +200,17 @@ body {
   color: white;
   cursor: pointer;
 }
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+
+.gallery-item img.portrait {
+  width: 100%;
+  height: auto;
+  object-fit: contain; /* instead of cover */
+  border-radius: 10px;
+  background-color: red;
+  display: block;
 }
+
+/* slide */
 .slider {
   position: relative;
   width: 100%;
@@ -294,9 +299,8 @@ body {
   background: linear-gradient(45deg, #4caf50, #2196f3);
   color: white;
   opacity: 0.9;
-  transition: background 1.3s, color 1.3s;
+  transition: 1.3s;
 }
-
 .category-button.active {
   background: linear-gradient(45deg, #4caf50, #2196f3);
   color: white;
