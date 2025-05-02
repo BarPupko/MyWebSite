@@ -134,7 +134,7 @@ body {
 
 .CameraInfo {
   position: absolute;
-  bottom: 45px;
+  bottom: 465px;
   left: 10px;
   background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
@@ -381,24 +381,26 @@ body {
   }
 
   .caption {
-    font-size: 0.8rem;
+    font-size: 0.5rem;
     left: 100px;
     bottom: 10px;
   }
 
   .views {
-    font-size: 0.8rem;
+    font-size: 0.5rem;
   }
 
   .CameraInfo {
-    bottom: 210px;
-    font-size: 0.55rem;
+    margin-top: 4px; /* Tighter spacing on mobile */
+    font-size: 0.5rem; /* Slightly smaller */
+    bottom: 165px;
+    left: 10px;
   }
 
- .category-button {
-    width: 100%;         /* Make buttons full width */
-    font-size: 18px;     /* Slightly larger text */
-    padding: 12px 24px;  /* More touch-friendly */
+  .category-button {
+    width: 100%; /* Make buttons full width */
+    font-size: 18px; /* Slightly larger text */
+    padding: 12px 24px; /* More touch-friendly */
   }
 
   .category-button {
@@ -406,6 +408,19 @@ body {
     padding: 6px 12px; /* smaller button size */
     width: auto; /* auto width or use a fixed small one */
     border-radius: 30px; /* still rounded */
+  }
+
+  .category-bubbles {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem; /* Reduced padding */
+    gap: 0.3rem; /* Less space between buttons */
+  }
+
+  .category-button {
+    width: 100%;
+    font-size: 16px;
+    padding: 8px 16px; /* Slightly tighter for touch */
   }
 
   .slider {
