@@ -1,90 +1,116 @@
-// script.js
-
 // Array of image objects
 const images = [
+  {
+    src: "./imgaes/SaveTheDate/Image1.jpeg",
+    title: "Board with numbers",
+    location: "Park Ha Amaqim",
+    exactLocation: { x: 32.72370464226655, y: 35.11077493651688 },
+    category: ["people", "SaveTheDate"],
+  },
+  {
+    src: "./imgaes/SaveTheDate/Image2.jpeg",
+    title: "Board with numbers",
+    location: "Park Ha Amaqim",
+    exactLocation: { x: 32.72370464226655, y: 35.11077493651688 },
+    category: ["people", "SaveTheDate"],
+  },
+  {
+    src: "./imgaes/SaveTheDate/Image3.jpeg",
+    title: "Board with numbers",
+    location: "Park Ha Amaqim",
+    exactLocation: { x: 32.72370464226655, y: 35.11077493651688 },
+    category: ["people", "SaveTheDate"],
+  },
   {
     src: "./imgaes/Landscape/FarRedBridge.jpg",
     title: "Golden Gate Bridge",
     location: "San Francisco",
-    exactLocation: { x: 37.8199, y: -122.4783 },
+    exactLocation: { x: 37.81999562350799, y: -122.47855980317016 },
     category: "Landscape",
   },
   {
     src: "./imgaes/Landscape/CloseRedBridge.jpg",
     title: "A Plane in golden gate",
     location: "San Francisco",
-    exactLocation: { x: 37.8199, y: -122.4783 },
+    exactLocation: { x: 37.81999562350799, y: -122.47855980317016 },
     category: "Landscape",
   },
   {
     src: "/imgaes/Landscape/BarCarmit.jpg",
     title: "Golden Bridge Selfie",
     location: "San Francisco",
-    exactLocation: { x: 37.8199, y: -122.4783 },
-    category: "people",
+    exactLocation: { x: 32.72370464226655, y: 35.11077493651688 },
+    category: ["people", "Landscape"],
   },
   {
     src: "./imgaes/Landscape/Soldiers (1).jpg",
     title: "Army Ranger",
-    location: "Park Shemer",
-    exactLocation: { x: 32.5674, y: 35.1234 },
+    location: "Park Ha Amaqim",
+    exactLocation: { x: 32.72370464226655, y: 35.11077493651688 },
     category: ["people", "animals"],
   },
   {
     src: "./imgaes/Landscape/Soldiers (2).jpg",
-    title: "Urban Calm",
-    location: "San Francisco",
-    exactLocation: { x: 37.8199, y: -122.4783 },
-    category: "people",
+    title: "Testing Gear",
+    location: "Park Ha Amaqim",
+    exactLocation: { x: 32.72370464226655, y: 35.11077493651688 },
+    category: ["Save The Date", "people"],
   },
   {
     src: "./imgaes/Landscape/Soldiers (3).jpg",
-    title: "Mountain Whisper",
-    location: "Banff",
-    exactLocation: { x: 51.1784, y: -115.5708 },
+    title: "Soldier and it best buddy",
+    location: "Park Ha Amaqim",
+    exactLocation: { x: 32.72370464226655, y: 35.11077493651688 },
     category: ["people", "animals"],
   },
   {
     src: "./imgaes/Architecture/newyork_highline.jpg",
-    title: "High Line",
+    title: "Zahara Hadid's Highline",
     location: "New York City",
-    exactLocation: { x: 40.748, y: -74.0048 },
+    exactLocation: { x: 40.751195524475605, y: -74.00277159936631 },
     category: "architecture",
   },
   {
     src: "./imgaes/Architecture/edinbrugh.JPG",
-    title: "HALL",
+    title: "The Lowry Theatre",
     location: "Edinburgh",
-    exactLocation: { x: 55.9533, y: -3.1883 },
+    exactLocation: { x: 53.470964667327905, y: -2.296001431344286 },
     category: "architecture",
   },
   {
     src: "./imgaes/Architecture/washington.jpg",
     title: "The Main Library",
     location: "Washington, D.C.",
-    exactLocation: { x: 38.9072, y: -77.0369 },
+    exactLocation: { x: 38.89243280246961, y: -77.00444342366481 },
     category: "architecture",
   },
   {
     src: "./imgaes/Sunset/sunset1.jpg",
     title: "Season of the Sea",
     location: "Kiryat Yam",
-    exactLocation: { x: 38.9072, y: -77.0369 },
+    exactLocation: { x: 32.84290262805934, y: 35.05803377995393 },
     category: "sunset",
   },
   {
     src: "./imgaes/Sunset/sunset2.jpg",
     title: "Season of the Sea",
     location: "Kiryat Yam",
-    exactLocation: { x: 38.9072, y: -77.0369 },
+    exactLocation: { x: 32.84290262805934, y: 35.05803377995393 },
     category: "sunset",
   },
   {
     src: "./imgaes/Sunset/sunset3.jpg",
     title: "Season of the Sea",
     location: "Haifa",
-    exactLocation: { x: 38.9072, y: -77.0369 },
+    exactLocation: { x: 32.84290262805934, y: 35.05803377995393 },
     category: "sunset",
+  },
+  {
+    src: "./imgaes/Portrait/Carmit_sanfran.jpg",
+    title: "Season of the Sea",
+    location: "San Francisco",
+    exactLocation: { x: 32.84290262805934, y: 35.05803377995393 },
+    category: "Portrait",
   },
 ];
 
@@ -130,6 +156,10 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("lightbox-title").textContent = img.title;
       document.getElementById("lightbox-location").textContent = img.location; // you can remove this line if we only want inside the map
 
+      //deal with horizontal and vertical images
+      const isPortrait = lightboxImg.naturalHeight > lightboxImg.naturalWidth;
+      lightboxImg.classList.toggle("portrait", isPortrait);
+
       // Extract EXIF data
       EXIF.getData(image, function () {
         const make = EXIF.getTag(this, "Make") || "Unknown Make";
@@ -142,28 +172,27 @@ document.addEventListener("DOMContentLoaded", () => {
           ? `1/${Math.round(1 / exposure)}s`
           : "Unknown Exposure";
         const fNumberStr = fNumber ? `f/${fNumber}` : "Unknown Aperture";
+        // Extract location data
+        // Extract coordinates from exactLocation
+        const lat = img.exactLocation.x;
+        const lng = img.exactLocation.y;
+        const locationIQKey = "pk.069fe51b456f904e1abfc7ab645dd9bd";
 
-        // Build Google Maps search URL based on location
-        const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-          img.location
-        )}`;
+        // Static map image using LocationIQ
+        const staticMapUrl = `https://maps.locationiq.com/v3/staticmap?key=${locationIQKey}&center=${lat},${lng}&zoom=13&size=300x150&markers=icon:small-red-cutout|${lat},${lng}`;
 
-        // Optional: Static Map Image URL (basic preview thumbnail)
-        const staticMapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(
-          img.location
-        )}&zoom=13&size=300x150&maptype=roadmap&markers=color:red%7C${encodeURIComponent(
-          img.location
-        )}&key=YOUR_GOOGLE_MAPS_API_KEY`;
+        // Optional: clickable Google Maps link
+        const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
 
         document.getElementById("lightbox-exif").innerHTML = `
-    <a href="${googleMapsUrl}" target="_blank" style="display: inline-block; margin-bottom: 10px;">
-      <img src="${staticMapUrl}" alt="Location Map" style="width: 100%; border-radius: 8px;">
-    </a>
-    <p><strong>Camera:</strong> ${make} ${model}</p>
-    <p><strong>ISO:</strong> ${iso}</p>
-    <p><strong>Aperture:</strong> ${fNumberStr}</p>
-    <p><strong>Shutter Speed:</strong> ${exposureStr}</p>
-  `;
+  <a href="${googleMapsUrl}" target="_blank" style="display: inline-block; margin-bottom: 10px;">
+    <img src="${staticMapUrl}" alt="Location Map" style="width: 100%; border-radius: 8px;">
+  </a>
+  <p><strong>Camera:</strong> ${make} ${model}</p>
+  <p><strong>ISO:</strong> ${iso}</p>
+  <p><strong>Aperture:</strong> ${fNumberStr}</p>
+  <p><strong>Shutter Speed:</strong> ${exposureStr}</p>
+`;
       });
 
       lightbox.classList.remove("hidden");

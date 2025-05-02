@@ -164,9 +164,13 @@ body {
 }
 
 .lightbox-img {
-  max-width: 60%;
+  max-width: 100vw;
+  max-height: 90vh;
+  width: auto;
   height: auto;
-  border-radius: 10px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
 .lightbox-info {
@@ -174,6 +178,10 @@ body {
   color: #333;
   font-size: 1rem;
   line-height: 1.5;
+}
+.lightbox-img.portrait {
+  max-height: 80vh;
+  width: auto;
 }
 
 .lightbox-map {
@@ -281,14 +289,16 @@ body {
   cursor: pointer;
   transition: background 0.5s, color 0.5s;
 }
+
 .category-button:hover {
   background: linear-gradient(45deg, #4caf50, #2196f3);
   color: white;
   opacity: 0.9;
-  transition: 1.3s;
+  transition: background 1.3s, color 1.3s;
 }
+
 .category-button.active {
-  background-color: linear-gradient(45deg, #4caf50, #2196f3);
+  background: linear-gradient(45deg, #4caf50, #2196f3);
   color: white;
   transition: background 0.5s, color 0.5s;
 }

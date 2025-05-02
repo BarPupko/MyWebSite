@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.min.js"></script>
   <script defer src="script.js"></script>
+  <script type="module" src="./script.js"></script>
+
   <!-- JQUERY -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- Awesome fonts -->
@@ -37,7 +39,7 @@
         <li><a href="https://www.instagram.com/barpopko" target="_blank">
         <li class="nav-icon"></i>
         </li>
-        <i class="fa-brands fa-instagram"></i>
+        <img src="./assets/icons/instagram.png" alt="Instagram" width="16px" height="16px">
         </a></li>
         <button id="theme-toggle" aria-label="החלף מצב תאורה">
           <i class="fas fa-moon"></i>
@@ -50,12 +52,11 @@
 
   <main>
     <div class="slider">
-      <a href="https://example1.com" class="slide active"><img src="./imgaes/Landscape/FarRedBridge.jpg"
-          alt="Slide 1"></a>
-      <a href="https://example2.com" class="slide"><img src="./imgaes/Landscape/CloseRedBridge.jpg" alt="Slide 2"></a>
-      <a href="https://example3.com" class="slide"><img src="./imgaes/Landscape/Soldiers (1).jpg" alt="Slide 3"></a>
-      <a href="https://example4.com" class="slide"><img src="./imgaes/Landscape/Soldiers (4).jpg" alt="Slide 4"></a>
-      <a href="https://example5.com" class="slide"><img src="./imgaes/Landscape/FarRedBridge.jpg" alt="Slide 5"></a> -->
+      <div class="slide active"><img src="./imgaes/Landscape/FarRedBridge.jpg" alt="Slide 1"></div>
+      <div class="slide"><img src="./imgaes/Landscape/CloseRedBridge.jpg" alt="Slide 2"></div>
+      <div class="slide"><img src="./imgaes/Landscape/Soldiers (1).jpg" alt="Slide 3"></div>
+      <div class="slide"><img src="./imgaes/Landscape/Soldiers (4).jpg" alt="Slide 4"></div>
+      <div class="slide"><img src="./imgaes/Landscape/FarRedBridge.jpg" alt="Slide 5"></div>
 
       <div class="controls">
         <button class="nav-button nav-prev">&#10094;</button>
@@ -68,18 +69,21 @@
 
     <!-- Category buttons for filtering the gallery below -->
     <div class="category-bubbles">
-      <button class="category-button" data-category="all">הכל</button>
-      <button class="category-button" data-category="people">אנשים</button>
-      <button class="category-button" data-category="architecture">אדריכלות</button>
       <button class="category-button" data-category="sunset">שקיעה</button>
-        <button class="category-button" data-category="animals">בעלי חיים</button>
-        <button class="category-button" data-category="landscape">נוף</button>
+      <button class="category-button" data-category="book">בוק</button>
+      <button class="category-button" data-category="Portrait">פורטרט</button>
+      <button class="category-button" data-category="SaveTheDate">Save The Date</button>
+      <button class="category-button" data-category="animals">בעלי חיים</button>
+      <button class="category-button" data-category="landscape">נוף</button>
+      <button class="category-button" data-category="architecture">אדריכלות</button>
+      <button class="category-button" data-category="people">אנשים</button>
+      <button class="category-button active" data-category="all">הכל</button>
     </div>
 
 
     <section id="portfolio" class="gallery">
       <!-- Images dynamically added via JS -->
-    </section>  
+    </section>
   </main>
 
   <div id="lightbox" class="lightbox hidden">
