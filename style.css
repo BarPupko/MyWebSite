@@ -222,7 +222,12 @@ body {
   background-color: red;
   display: block;
 }
-
+.nagishli-trigger-icon {
+  position: fixed; /* ensure it stays in place */
+  bottom: 100px; /* or wherever it's supposed to sit */
+  right: 1px;
+  z-index: 9999 !important; /* force it to be above everything */
+}
 /* slide */
 .slider {
   position: relative;
@@ -497,6 +502,12 @@ body {
     right: 10px;
     color: rgb(255, 255, 255);
     font-size: 0.6rem;
+  }
+  .nagishli-trigger-icon {
+    position: fixed; /* ensure it stays in place */
+    bottom: 100px; /* or wherever it's supposed to sit */
+    right: 60px;
+    z-index: 9999 !important; /* force it to be above everything */
   }
 }
 
