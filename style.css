@@ -366,20 +366,29 @@ body {
     left: 0;
     z-index: 999;
   }
-
   .nav-links.show {
     display: flex;
-    bottom: 10px;
-    height: 50px;
-    --bg-color: #121212;
-    --text-color: white;
+    position: absolute; /* or 'relative' if inside a positioned container */
+    top: 90px; /* this moves it down from the top */
+    height: 100px;
+    background-color: #121212;
+    color: white;
+    width: 100%;
+    justify-content: center;
+    z-index: 1000;
   }
 
   .nav-links li a {
     font-size: 1rem;
     bottom: 10px;
   }
-
+  /* hover */
+  .nav-links li a:hover {
+    background-color: #333;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+  }
   .navbar {
     flex-direction: column;
     align-items: flex-start;
@@ -396,7 +405,7 @@ body {
   }
 
   .gallery {
-    grid-template-columns: repeat(1, 1fr); /* 1 column on phones */
+    grid-template-columns: repeat(3, 1fr); /* 1 column on phones */
     gap: 1rem;
     padding: 1rem;
   }
@@ -405,6 +414,7 @@ body {
     font-size: 0.5rem;
     left: 100px;
     bottom: 10px;
+    display: none;
   }
 
   .views {
@@ -416,32 +426,29 @@ body {
     font-size: 0.5rem; /* Slightly smaller */
     bottom: 240px;
     left: 10px;
-  }
-
-  .category-button {
-    width: 100%; /* Make buttons full width */
-    font-size: 18px; /* Slightly larger text */
-    padding: 12px 24px; /* More touch-friendly */
-  }
-
-  .category-button {
-    font-size: 0.8rem; /* smaller text */
-    padding: 6px 12px; /* smaller button size */
-    width: auto; /* auto width or use a fixed small one */
-    border-radius: 30px; /* still rounded */
+    display: none;
   }
 
   .category-bubbles {
-    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    justify-content: center; /* Center the row */
     align-items: center;
-    padding: 0.5rem; /* Reduced padding */
-    gap: 0.3rem; /* Less space between buttons */
+    gap: 0.3rem;
+    padding: 0.5rem;
   }
 
   .category-button {
-    width: 100%;
-    font-size: 16px;
-    padding: 8px 16px; /* Slightly tighter for touch */
+    padding: 6px 12px; /* Small, compact buttons */
+    max-width: 70%;
+    font-size: 14px; /* Smaller font */
+    border-radius: 999px; /* Pill shape */
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.5s;
+    white-space: nowrap; /* Prevents text from breaking into new lines */
   }
 
   .slider {
@@ -476,6 +483,7 @@ body {
     font-size: 0.9rem;
     top: 6px;
     right: 6px;
+    display: none;
   }
 
   .close {
