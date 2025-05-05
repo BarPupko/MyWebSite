@@ -13,6 +13,7 @@ const images = [
     location: "Park Ha Amaqim",
     exactLocation: { x: 32.72370464226655, y: 35.11077493651688 },
     category: ["people", "SaveTheDate"],
+    objectPosition: "top",
   },
   {
     src: "./imgaes/SaveTheDate/img3.jpg",
@@ -27,7 +28,9 @@ const images = [
     location: "San Francisco",
     exactLocation: { x: 37.81999562350799, y: -122.47855980317016 },
     category: "Landscape",
+    objectPosition: "top",
   },
+
   {
     src: "./imgaes/Landscape/CloseRedBridge.jpg",
     title: "A Plane in golden gate",
@@ -111,6 +114,7 @@ const images = [
     location: "San Francisco",
     exactLocation: { x: 32.84290262805934, y: 35.05803377995393 },
     category: "Portrait",
+    objectPosition: "center",
   },
 ];
 
@@ -154,7 +158,8 @@ document.addEventListener("DOMContentLoaded", () => {
     CameraInfo.innerHTML =
       '<i class="fa-solid fa-camera"></i> ' + "Click for Camera Info";
     console.log("before the function");
-
+    // Apply position if defined
+    image.style.objectPosition = img.objectPosition || "center";
     item.addEventListener("click", () => {
       storedViews++;
       localStorage.setItem(viewsKey, storedViews);
@@ -359,6 +364,13 @@ document.addEventListener("DOMContentLoaded", () => {
         : '<i class="fa-solid fa-sun"></i>';
   });
 });
+
+const isPortrait = img.naturalHeight > img.naturalWidth;
+image.classList.toggle("portrait", isPortrait);
+if (!isPortrait) {
+  image.style.objectPosition = img.objectPosition || "center";
+}
+
 // progress bar
 // (function () {
 //   const slides = document.querySelectorAll(".slider .slide");
